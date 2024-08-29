@@ -3118,13 +3118,15 @@ textarea.form-control-lg {
 @media (prefers-reduced-motion: reduce) {
     .btn {
         transition: none;
-    }
+}
 }
 
 .btn:hover {
     color: var(--bs-btn-hover-color);
     background-color: var(--bs-btn-hover-bg);
     border-color: var(--bs-btn-hover-border-color);
+a, .btn-link {
+    color: #006bb7;
 }
 
 .btn-check:focus + .btn, .btn:focus {
@@ -12456,7 +12458,7 @@ h6, .h6 {
     width: 350px;
     height: 500px;
     flex-shrink: 0;
-}
+    }
 
 .employee-detail, .employee-edit {
     padding: 15px;
