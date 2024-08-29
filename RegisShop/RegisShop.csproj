@@ -10,4 +10,16 @@
     <ProjectReference Include="..\..\..\..\Desktop\blazor-fundamentals\04\demos\Demos\BethanysPieShopHRM\BethanysPieShopHRM.Shared\BethanysPieShopHRM.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\QuickViewPopup.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\QuickViewPopup.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Archives\QuickViewPopup.razor" />
+  </ItemGroup>
+
 </Project>
