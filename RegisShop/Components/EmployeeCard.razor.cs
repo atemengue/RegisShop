@@ -10,4 +10,5 @@ public partial class EmployeeCard
 
     [Parameter]
     public EventCallback<Employee> EmployeeQuickViewClicked { get; set; }
+
 }

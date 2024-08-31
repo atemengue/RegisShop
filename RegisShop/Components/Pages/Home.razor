@@ -2,7 +2,10 @@
 
 <h1>Regis Shop!</h1>
 
-<h2>Regis Shop!</h2>
+<h2>Welcome Shop!</h2>
+<br />
 
-
-Welcome to your new app.
+@foreach(var widgetType in Widgets)
+{
+    <DynamicComponent Type="widgetType"></DynamicComponent>
+}

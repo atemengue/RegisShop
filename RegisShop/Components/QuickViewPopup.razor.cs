@@ -13,6 +13,13 @@ namespace RegisShop.Components
         {
             _employee = Employee;
         }
+
+        public void Ccloase()
+        {
+            _employee = null;
+
+        }
+
         public void Close()
         {
             _employee = null;

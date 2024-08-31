@@ -7,7 +7,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="titleLabel">Employee Quick View</h5>
-                    <button type="button" class="close btn btn-lg" data-dismiss="modal" aria-label="Close" @onclick="@Close">
+                    <button @onclick="@Close" type="button" class="close btn btn-lg" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -50,6 +50,7 @@
                             </div>
                         </div>
                     </div>
+                    <button @onclick="@Close" type="button" class="btn btn-outline-primary">Close</button>
                 </div>
             </div>
         </div>
