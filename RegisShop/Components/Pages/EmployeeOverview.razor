@@ -14,10 +14,17 @@
   <div class="row">
         @foreach(var employee in Employees)
         {
-            <div class="col-6 col-lg-4 col-xl-3 col-xxl-3">
-                <EmployeeCard Employee="employee"
-                EmployeeQuickViewClicked="ShowQuickViewPopup"    ></EmployeeCard>
-            </div>
+            <ErrorBoundary>
+                <ChildContent>
+                    <div class="col-6 col-lg-4 col-xl-3 col-xxl-3">
+                        <EmployeeCard Employee="employee"
+                        EmployeeQuickViewClicked="ShowQuickViewPopup"></EmployeeCard>
+                    </div>
+                </ChildContent>
+                <ErrorContent>
+                    <p class="errorUI">Invalid employee!</p>
+                </ErrorContent>
+            </ErrorBoundary>
         }
     </div>
 }
