@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using RegisShop.Components;
+using RegisShop.Contracts.Repositories;
+using RegisShop.Contracts.Services;
 using RegisShop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,8 @@ builder.Services.AddDbContextFactory<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
+builder.Services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
+builder.Services.AddScoped<IEmployeeDataService, IEmployeeDataService>();
 
 var app = builder.Build();
 
