@@ -1,10 +1,19 @@
+using Microsoft.EntityFrameworkCore;
 using RegisShop.Components;
+using RegisShop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Add DBContext
+
+builder.Services.AddDbContextFactory<AppDbContext>(options => 
+    options.UseSqlServer(
+        builder.Configuration["ConnectionStrings:DefaultConnection"]));
+
 
 var app = builder.Build();
 
