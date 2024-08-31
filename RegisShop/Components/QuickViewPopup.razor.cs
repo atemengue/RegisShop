@@ -18,5 +18,6 @@ namespace RegisShop.Components
             _employee = null;
         }
 
+        private Employee? _employee;
     }
 }
