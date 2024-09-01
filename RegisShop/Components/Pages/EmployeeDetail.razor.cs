@@ -1,20 +1,24 @@
 ﻿using RegisShop.Services;
 using Microsoft.AspNetCore.Components;
 using BethanysPieShopHRM.Shared.Domain;
+using RegisShop.Contracts.Services;
 
 namespace RegisShop.Components.Pages
 {
     public partial class EmployeeDetail
     {
         [Parameter]
-
         public int EmployeeId { get; set; }
 
         public Employee Employee { get; set; } = new Employee();
 
-        protected override void OnInitialized()
+        [Inject]
+        public IEmployeeDataService? EmployeeDataService { get; set; }
+
+        protected override async void OnInitialized()
         {
-           Employee = MockDataService.Employees.Single( e => e.EmployeeId == EmployeeId);
+            Employee = await EmployeeDataService.GetEmployeeDetails(EmployeeId);
+           //Employee = MockDataService.Employees.Single( e => e.EmployeeId == EmployeeId);
         }
 
         private void ChangeHolidayState()

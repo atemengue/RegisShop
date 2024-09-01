@@ -3,6 +3,8 @@ using RegisShop.Components;
 using RegisShop.Contracts.Repositories;
 using RegisShop.Contracts.Services;
 using RegisShop.Data;
+using RegisShop.Services;
+using RegisShop.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +18,8 @@ builder.Services.AddDbContextFactory<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
-builder.Services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
-builder.Services.AddScoped<IEmployeeDataService, IEmployeeDataService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeDataService,EmployeeDataService>();
 
 var app = builder.Build();
 
