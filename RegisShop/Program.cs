@@ -5,6 +5,7 @@ using RegisShop.Contracts.Services;
 using RegisShop.Data;
 using RegisShop.Services;
 using RegisShop.Repositories;
+using RegisShop.State;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,10 @@ builder.Services.AddDbContextFactory<AppDbContext>(options =>
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeDataService,EmployeeDataService>();
+builder.Services.AddScoped<ITimeRegistrationRepository, TimeRegistrationRepository>();
+builder.Services.AddScoped<ITimeRegistrationDataService, TimeRegistrationDataService>();
+
+builder.Services.AddScoped<ApplicationState>();
 
 var app = builder.Build();
 
