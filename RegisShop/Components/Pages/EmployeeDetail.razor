@@ -1,6 +1,7 @@
 ﻿@page "/employeedetail/{EmployeeId:int}"
 @attribute [StreamRendering(true)]
 @rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.QuickGrid
 
 
 <section class="employee-detail">
@@ -157,25 +158,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <Virtualize ItemsProvider="LoadTimeRegistrations" Items="TimeRegistrations" Context="context">
-                        <ItemContent>
-                            <tr>
-                                <td>@context.TimeRegistrationId</td>
-                                <td>@context.StartTime</td>
-                                <td>@context.EndTime</td>
-                                <td>@context.PerformedTaskDescription</td>
-                            </tr>
-                        </ItemContent>
-                        <Placeholder>
-                            <tr>
-                                <td>Loading....</td>
-                                <td>Loading....</td>
-                                <td>Loading....</td>
-                                <td>Loading....</td>
-                            </tr>
-                        </Placeholder>
-                    </Virtualize>
-                  
+                      @if (queryableCount > 0)
+           {
+                           <QuickGrid Items="@itemsQueryable" Pagination="@pagination">
+                               <PropertyColumn Property="@(p => p.TimeRegistrationId)" IsDefaultSortColumn="true" Title="ID" Sortable="true">
+                               </PropertyColumn>
+                               <PropertyColumn Property="@(e => e.StartTime)" Title="Start time" Sortable="true" />
+                               <PropertyColumn Property="@(e => e.EndTime)" Title="End time" Sortable="true" />
+                               <PropertyColumn Property="@(e => e.PerformedTaskDescription)" Title="Task" Align="Align.Left" />
+                           </QuickGrid>
+                           <Paginator State="@pagination"/>
+           }
+           else
+           {
+               <p>No time registrations found.</p>
+           }
+
                 </tbody>
             </table>
         </div>

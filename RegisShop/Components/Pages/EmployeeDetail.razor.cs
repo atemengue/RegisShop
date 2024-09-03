@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using BethanysPieShopHRM.Shared.Domain;
 using RegisShop.Contracts.Services;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
+using Microsoft.AspNetCore.Components.QuickGrid;
 
 namespace RegisShop.Components.Pages
 {
@@ -19,15 +20,20 @@ namespace RegisShop.Components.Pages
 
         [Inject]
         public ITimeRegistrationDataService? TimeRegistrationDataService { get; set; }
-        private float itemHeight = 50;
+        private readonly float itemHeight = 50;
+        protected IQueryable<TimeRegistration>? itemsQueryable;
+        protected int queryableCount = 0;
 
+        public PaginationState pagination = new() { ItemsPerPage = 10 };
         protected override async void OnInitialized()
         {
             Employee = await EmployeeDataService.GetEmployeeDetails(EmployeeId);
             TimeRegistrations = await TimeRegistrationDataService.GetTimeRegistrationsForEmployee(EmployeeId);
-           //Employee = MockDataService.Employees.Single( e => e.EmployeeId == EmployeeId);
+            //Employee = MockDataService.Employees.Single( e => e.EmployeeId == EmployeeId);
+            itemsQueryable = (await TimeRegistrationDataService.GetTimeRegistrationsForEmployee(EmployeeId)).AsQueryable();
+            queryableCount = itemsQueryable.Count();
         }
-
+        
         public async ValueTask<ItemsProviderResult<TimeRegistration>> LoadTimeRegistrations(ItemsProviderRequest request)
         {
             int totalNumberOfTimeRegistrations = await TimeRegistrationDataService.GetTimeRegistrationCountForEmployeeId(EmployeeId);
